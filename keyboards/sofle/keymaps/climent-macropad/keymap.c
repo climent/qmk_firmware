@@ -53,10 +53,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_ESC,   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                   KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_GRV,
      KC_TAB,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                   KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
      KC_LCTRL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                   KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, LT(_SYM,KC_QUOT),
-     //KC_LCTRL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                   KC_H,    KC_J,    KC_K,    KC_L,    LT(_NAV,KC_SCLN), LT(_SYM,KC_QUOT),
      KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, KC_MUTE, KC_MUTE, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-	 KC_NAV, KC_LOWER, KC_LALT ,KC_LGUI, KC_ENT,                       KC_SPC,KC_RAISE,KC_NAV, KC_NUM, KC_RCTRL
-	 //KC_NAV, KC_LOWER, KC_LALT ,KC_LGUI, GUI_T(KC_ENT),                       KC_SPC,KC_RAISE,KC_NAV, XXXXXXX, KC_RCTRL
+	 KC_NAV, KC_LOWER, KC_LALT ,KC_LGUI, KC_ENT,                       KC_SPC,KC_RAISE,KC_NAV, XXXXXXX, KC_RCTRL
 ),
 
 [_RAISE] = LAYOUT(\
@@ -232,7 +230,6 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 }
 
 static bool caps_lock_on = false;
-static bool num_lock_on = false;
 
 static void print_status_narrow(void) {
     static const char PROGMEM hr[] = {
@@ -324,26 +321,15 @@ static void print_status_narrow(void) {
         0x00,
     }; 
 
-    static const char PROGMEM capslock_enabled_numlock_enabled[] = {
-        0xb0, 0xb1, 0xb8, 0xb9,
-        0xb2, 0xb3, 0xba, 0xbb,
+    static const char PROGMEM capslock_enabled[] = {
+        0x80, 0xb0, 0xb1, 0x80,
+        0x80, 0xb2, 0xb3, 0x80,
         0x00,
     };
 
-    static const char PROGMEM capslock_disabled_numlock_disabled[] = {
-        0xb4, 0xb5, 0xbc, 0xbd,
-        0xb6, 0xb7, 0xbe, 0xbf,
-        0x00,
-    };
-    static const char PROGMEM capslock_disabled_numlock_enabled[] = {
-        0xb4, 0xb5, 0xb8, 0xb9,
-        0xb6, 0xb7, 0xba, 0xbb,
-        0x00,
-    };
-
-    static const char PROGMEM capslock_enabled_numlock_disabled[] = {
-        0xb0, 0xb1, 0xbc, 0xbd,
-        0xb2, 0xb3, 0xbe, 0xbf,
+    static const char PROGMEM capslock_disabled[] = {
+        0x80, 0xb4, 0xb5, 0x80,
+        0x80, 0xb6, 0xb7, 0x80,
         0x00,
     };
 
@@ -390,27 +376,13 @@ static void print_status_narrow(void) {
     }
 
     oled_write_P(hr, false);
-    if (caps_lock_on) {
-	if (num_lock_on) {
-            oled_write_P(capslock_enabled_numlock_enabled, false);
-	} else {
-	    oled_write_P(capslock_enabled_numlock_disabled, false);
-	}
-    } else {
-	if (num_lock_on) {
-            oled_write_P(capslock_disabled_numlock_enabled, false);
-	} else {
-	    oled_write_P(capslock_disabled_numlock_disabled, false);
-	}
-    }
-//    oled_write_P(num_lock_on ? capslock_enabled_numlock_enabled : capslock_disabled_numlock_disabled, false);
+    oled_write_P(caps_lock_on ? capslock_enabled : capslock_disabled, false);
 
     //return true;
 }
 
 bool led_update_user(led_t led_state) {
     caps_lock_on = led_state.caps_lock;
-    num_lock_on = led_state.num_lock;
     return true;
 }
 

@@ -25,7 +25,8 @@ for more options.
 #undef ENCODER_RESOLUTION
 #define ENCODER_RESOLUTION 4
 
-#define SPLIT_LED_STATE_ENABLE
+//#define SPLIT_TRANSACTION_IDS_KB MOUSE_SYNC
+//#define SPLIT_LAYER_STATE_ENABLE
 
 #ifdef RGBLIGHT_ENABLE
 
@@ -62,7 +63,7 @@ for more options.
     #define OLED_FONT_H "keyboards/sofle/keymaps/climent/glcdfont.c"
     #define OLED_FONT_WIDTH 8
     #define OLED_FONT_START 0x80
-    #define OLED_FONT_END 0xbf
+    #define OLED_FONT_END 0xb7
 #endif
 
 #ifdef POINTING_DEVICE_ENABLE
