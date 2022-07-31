@@ -167,63 +167,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 
 #ifdef OLED_ENABLE
 
-/*
-static void render_logo(void) {
-    static const char PROGMEM qmk_logo[] = {
-        0x80, 0x81, 0x82, 0x83, 0x84, 0x85, 0x86, 0x87, 0x88, 0x89, 0x8A, 0x8B, 0x8C, 0x8D, 0x8E, 0x8F, 0x90, 0x91, 0x92, 0x93, 0x94,
-        0xA0, 0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6, 0xA7, 0xA8, 0xA9, 0xAA, 0xAB, 0xAC, 0xAD, 0xAE, 0xAF, 0xB0, 0xB1, 0xB2, 0xB3, 0xB4,
-        0xC0, 0xC1, 0xC2, 0xC3, 0xC4, 0xC5, 0xC6, 0xC7, 0xC8, 0xC9, 0xCA, 0xCB, 0xCC, 0xCD, 0xCE, 0xCF, 0xD0, 0xD1, 0xD2, 0xD3, 0xD4, 0x00
-    };
-
-    oled_write_P(qmk_logo, false);
-}
-*/
-
-/*
-static void print_status_narrow(void) {
-
-    if (keymap_config.swap_lalt_lgui) {
-        oled_write_ln_P(PSTR("SWAP"), true);
-    } else {
-        oled_write_ln_P(PSTR("swap"), false);
-    }
-
-    switch (get_highest_layer(default_layer_state)) {
-        case _QWERTY:
-            oled_write_ln_P(PSTR("Qwrt"), false);
-            break;
-        default:
-            oled_write_ln_P(PSTR("Undef"), false);
-    }
-
-    switch (get_highest_layer(layer_state)) {
-        case _QWERTY:
-            oled_write_P(PSTR("Base\n"), false);
-            break;
-        case _RAISE:
-            oled_write_P(PSTR("Raise"), false);
-            break;
-        case _LOWER:
-            oled_write_P(PSTR("Lower"), false);
-            break;
-        case _ADJUST:
-            oled_write_P(PSTR("Adj\n"), false);
-            break;
-        case _NAV:
-            oled_write_P(PSTR("Navig"), false);
-            break;
-        case _SYM:
-            oled_write_P(PSTR("Sym\n"), false);
-            break;
-        default:
-            oled_write_P(PSTR("Undef"), false);
-    }
-
-    led_t led_usb_state = host_keyboard_led_state();
-    oled_write_ln_P(PSTR("CPSLK"), led_usb_state.caps_lock);
-}
-*/
-
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     if (is_keyboard_master()) {
         return OLED_ROTATION_270;
@@ -614,7 +557,7 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
     return mouse_report;
 }
 
-/*
+
 void housekeeping_task_user(void) {
     if (!is_keyboard_left()) {
       if (!IS_LAYER_ON(_NAV)) {
@@ -636,7 +579,7 @@ void housekeeping_task_user(void) {
       }
     }
 }
-*/
+
 //void keyboard_post_init_user(void) {
 //    if (!is_keyboard_left()) {
 //            pimoroni_trackball_set_rgbw(0,0,95,0);
