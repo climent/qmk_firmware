@@ -88,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_BSPC , C(KC_6), C(KC_7), C(KC_8), C(KC_9), C(KC_0),                      XXXXXXX, KC_VOLD,      KC_MUTE, KC_VOLU,    XXXXXXX, XXXXXXX,
   XXXXXXX , XXXXXXX, XXXXXXX, KC_BTN1, KC_BTN2, XXXXXXX,                      XXXXXXX, C(KC_LEFT),   XXXXXXX, C(KC_RGHT), XXXXXXX, XXXXXXX,
   XXXXXXX , XXXXXXX, XXXXXXX, XXXXXXX, C(KC_LEFT), C(KC_RGHT), XXXXXXX,  XXXXXXX,   XXXXXXX, C(S(KC_TAB)), G(KC_R), C(KC_TAB),  XXXXXXX, _______,
-                       XXXXXXX, XXXXXXX, XXXXXXX, KC_LGUI, KC_SPC,   G(KC_SPC), _______, KC_ENT,       XXXXXXX, XXXXXXX
+                       XXXXXXX, XXXXXXX, XXXXXXX, KC_LGUI, KC_SPC,   G(KC_SPC), KC_RAISE, KC_ENT,       XXXXXXX, XXXXXXX
 ),
  
 [_SYM] = LAYOUT(
@@ -395,11 +395,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 layer_on(_RAISE);
                 update_tri_layer(_LOWER, _RAISE, _ADJUST);
-                update_tri_layer(_NAV, _RAISE, _NAV);
             } else {
                 layer_off(_RAISE);
                 update_tri_layer(_LOWER, _RAISE, _ADJUST);
-                update_tri_layer(_NAV, _RAISE, _NAV);
             }
             return false;
         case KC_NAV:

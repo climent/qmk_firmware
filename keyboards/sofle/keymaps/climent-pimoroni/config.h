@@ -59,6 +59,8 @@ for more options.
 #endif
 
 #ifdef OLED_ENABLE
+//    #define OLED_DISPLAY_128X64
+//    #define OLED_IC OLED_IC_SH1106
     #define OLED_FONT_H "keyboards/sofle/keymaps/climent/glcdfont.c"
     #define OLED_FONT_WIDTH 8
     #define OLED_FONT_START 0x80
