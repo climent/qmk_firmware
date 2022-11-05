@@ -27,6 +27,7 @@
 enum sofle_layers {
     _DEFAULTS = 0,
     _QWERTY = 0,
+    _COLEMAK,
     _LOWER,
     _RAISE,
     _ADJUST,
@@ -39,6 +40,7 @@ enum sofle_layers {
 enum custom_keycodes {
     KC_QWERTY = SAFE_RANGE,
     KC_LOWER,
+    KC_COLEMAK,
     KC_RAISE,
     KC_ADJUST,
     KC_SYM,
@@ -50,27 +52,32 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_QWERTY] = LAYOUT( \
-     KC_ESC,   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                   KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_GRV,
-     KC_TAB,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                   KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
-     KC_LCTRL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                   KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, LT(_SYM,KC_QUOT),
-     //KC_LCTRL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                   KC_H,    KC_J,    KC_K,    KC_L,    LT(_NAV,KC_SCLN), LT(_SYM,KC_QUOT),
-     KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, KC_MUTE, KC_MUTE, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-	 KC_NAV, KC_LOWER, KC_LALT ,KC_LGUI, KC_ENT,                       KC_SPC,KC_RAISE,KC_NAV, KC_NUM, KC_RCTRL
-	 //KC_NAV, KC_LOWER, KC_LALT ,KC_LGUI, GUI_T(KC_ENT),                       KC_SPC,KC_RAISE,KC_NAV, XXXXXXX, KC_RCTRL
+     KC_ESC,   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                       KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_GRV,
+     KC_TAB,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                       KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
+     KC_LCTRL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                       KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, LT(_SYM,KC_QUOT),
+     KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, KC_MUTE, C(KC_LALT),  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+	 KC_NAV, KC_LOWER, KC_LALT ,KC_LGUI, KC_ENT,                           KC_SPC,KC_RAISE,KC_NAV, KC_NUM, KC_RCTRL
 ),
 
+[_COLEMAK] = LAYOUT( \
+     KC_ESC,   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                       KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_GRV,
+     KC_TAB,   KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                       KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
+     KC_LCTRL, KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                       KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    LT(_SYM,KC_QUOT),
+     KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, KC_MUTE, C(KC_LALT),  KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+	 KC_NAV, KC_LOWER, KC_LALT ,KC_LGUI, KC_ENT,                           KC_SPC,KC_RAISE,KC_NAV, KC_NUM, KC_RCTRL
+),
 [_RAISE] = LAYOUT(\
   _______, _______, _______, _______, _______, _______,                    KC_HOME, KC_END , _______, KC_LCBR, KC_RCBR, KC_TILD, \
   _______, _______, _______, _______, KC_HOME, KC_END ,                    KC_PGUP, XXXXXXX, KC_UP  , KC_LBRC, KC_RBRC, KC_DEL , \
-  _______, _______, _______, _______, KC_NAV , _______,                    KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_PIPE, KC_ENT , \
-  _______, KC_VIMZ, _______, _______, _______,_______,KC_MPLY,   _______ , KC_UNDS, KC_MINS, KC_EQL , KC_PLUS, KC_BSLS, _______, \
+  _______, _______, _______, _______, _______, _______,                    KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_PIPE, KC_ENT , \
+  _______, KC_VIMZ, _______, _______, _______, _______, KC_MPLY, _______ , KC_UNDS, KC_MINS, KC_EQL , KC_PLUS, KC_BSLS, _______, \
                     _______, _______, _______, _______, KC_SPC , _______ , _______, KC_RGUI, KC_RALT, _______ \
 ),
 
 [_LOWER] = LAYOUT( \
   KC_GRV ,    KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  ,                         KC_F6  , KC_F7  ,      KC_F8,   KC_F9,      KC_F10 , _______,
-  _______,    KC_VOLU, _______, _______, TG(_RAISE), AG_TOGG,                      _______, KC_VOLD,      KC_MUTE, KC_VOLU,    _______, KC_DEL ,
-  G(C(KC_Q)), KC_VOLD, _______, _______, _______, _______,                         _______, C(KC_LEFT),   _______, C(KC_RGHT), _______, _______,
+  _______,    KC_F11 , KC_F12 , _______, TG(_RAISE), AG_TOGG,                      _______, KC_VOLD,      KC_MUTE, KC_VOLU,    _______, KC_DEL ,
+  G(C(KC_Q)), _______, _______, _______, DF(_QWERTY), DF(_COLEMAK),                _______, C(KC_LEFT),   _______, C(KC_RGHT), _______, _______,
   _______,    KC_CAPS, _______, _______, C(KC_LEFT), C(KC_RGHT), _______, _______, _______, C(S(KC_TAB)), G(KC_R), C(KC_TAB),  _______, _______,
                     _______, _______, _______, _______, KC_SPC ,          _______, _______, _______, _______, _______ \
 ),
@@ -85,10 +92,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_NAV] = LAYOUT( 
   KC_TILD , C(KC_1), C(KC_2), C(KC_3), C(KC_4), C(KC_5),                      C(KC_6), C(KC_7),      C(KC_8), C(KC_9),    C(KC_0), KC_TILD,
-  KC_BSPC , C(KC_6), C(KC_7), C(KC_8), C(KC_9), C(KC_0),                      XXXXXXX, KC_VOLD,      KC_MUTE, KC_VOLU,    XXXXXXX, XXXXXXX,
-  XXXXXXX , XXXXXXX, XXXXXXX, KC_BTN1, KC_BTN2, XXXXXXX,                      XXXXXXX, C(KC_LEFT),   XXXXXXX, C(KC_RGHT), XXXXXXX, XXXXXXX,
+  KC_BSPC , XXXXXXX, XXXXXXX, KC_UP  , XXXXXXX, KC_PGUP,                      XXXXXXX, KC_VOLD,      KC_MUTE, KC_VOLU,    XXXXXXX, XXXXXXX,
+  XXXXXXX , XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,                      XXXXXXX, C(KC_LEFT),   XXXXXXX, C(KC_RGHT), XXXXXXX, XXXXXXX,
   XXXXXXX , XXXXXXX, XXXXXXX, XXXXXXX, C(KC_LEFT), C(KC_RGHT), XXXXXXX,  XXXXXXX,   XXXXXXX, C(S(KC_TAB)), G(KC_R), C(KC_TAB),  XXXXXXX, _______,
-                       XXXXXXX, XXXXXXX, XXXXXXX, KC_LGUI, KC_SPC,   G(KC_SPC), KC_RAISE, KC_ENT,       XXXXXXX, XXXXXXX
+                       XXXXXXX, KC_BTN1, KC_BTN2, KC_LGUI, KC_SPC,   G(KC_SPC), KC_RAISE, KC_ENT,       XXXXXXX, XXXXXXX
 ),
  
 [_SYM] = LAYOUT(
@@ -124,6 +131,18 @@ enum combo_events {
     C_A_LOCK_L,
     C_A_LOCK_R,
     EM_EMAIL,
+    ED_F1,
+    ED_F2,
+    ED_F3,
+    ED_F4,
+    ED_F5,
+    ED_F6,
+    ED_F7,
+    ED_F8,
+    ED_F9,
+    ED_F10,
+    ED_F11,
+    ED_F12,
     COMBO_LENGTH
 };
 uint16_t COMBO_LEN = COMBO_LENGTH; // remove the COMBO_COUNT define and use this instead!
@@ -133,11 +152,36 @@ const uint16_t PROGMEM c_a_lock_r[] = {KC_J, KC_K, COMBO_END};
 const uint16_t PROGMEM c_a_lock_l[] = {KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM email_combo[] = {KC_ESC, KC_GRV, COMBO_END};
 
+const uint16_t PROGMEM combo_f1[] = {KC_1, KC_Q, COMBO_END};
+const uint16_t PROGMEM combo_f2[] = {KC_2, KC_W, COMBO_END};
+const uint16_t PROGMEM combo_f3[] = {KC_3, KC_E, COMBO_END};
+const uint16_t PROGMEM combo_f4[] = {KC_4, KC_R, COMBO_END};
+const uint16_t PROGMEM combo_f5[] = {KC_5, KC_T, COMBO_END};
+const uint16_t PROGMEM combo_f6[] = {KC_6, KC_Y, COMBO_END};
+const uint16_t PROGMEM combo_f7[] = {KC_7, KC_U, COMBO_END};
+const uint16_t PROGMEM combo_f8[] = {KC_8, KC_I, COMBO_END};
+const uint16_t PROGMEM combo_f9[] = {KC_9, KC_O, COMBO_END};
+const uint16_t PROGMEM combo_f10[] = {KC_0, KC_P, COMBO_END};
+const uint16_t PROGMEM combo_f11[] = {KC_1, KC_A, COMBO_END};
+const uint16_t PROGMEM combo_f12[] = {KC_2, KC_S, COMBO_END};
+
 combo_t key_combos[] = {
     COMBO(caps_lock, KC_CAPS),
     COMBO(c_a_lock_r, C(KC_LALT)),
     COMBO(c_a_lock_l, C(KC_LALT)),
     COMBO_ACTION(email_combo),
+    [ED_F1] = COMBO(combo_f1, KC_F1),
+    [ED_F2] = COMBO(combo_f2, KC_F2),
+    [ED_F3] = COMBO(combo_f3, KC_F3),
+    [ED_F4] = COMBO(combo_f4, KC_F4),
+    [ED_F5] = COMBO(combo_f5, KC_F5),
+    [ED_F6] = COMBO(combo_f6, KC_F6),
+    [ED_F7] = COMBO(combo_f7, KC_F7),
+    [ED_F8] = COMBO(combo_f8, KC_F8),
+    [ED_F9] = COMBO(combo_f9, KC_F9),
+    [ED_F10] = COMBO(combo_f10, KC_F10),
+    [ED_F11] = COMBO(combo_f11, KC_F11),
+    [ED_F12] = COMBO(combo_f12, KC_F12),
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
