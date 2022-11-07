@@ -76,6 +76,7 @@
 
   * Software Features
     * [Auto Shift](feature_auto_shift.md)
+    * [Autocorrect](feature_autocorrect.md)
     * [Caps Word](feature_caps_word.md)
     * [Combos](feature_combo.md)
     * [Debounce API](feature_debounce_type.md)
@@ -122,7 +123,6 @@
     * [PS/2 Mouse](feature_ps2_mouse.md)
     * [Split Keyboard](feature_split_keyboard.md)
     * [Stenography](feature_stenography.md)
-    * [Thermal Printer](feature_thermal_printer.md)
     * [Velocikey](feature_velocikey.md)
 
   * Keyboard Building
