@@ -56,9 +56,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QWERTY] = LAYOUT(
      KC_ESC  , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,                KC_6   , KC_7   , KC_8   , KC_9   , KC_0    ,KC_GRV ,
      KC_TAB  , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   ,                KC_Y   , KC_U   , KC_I   , KC_O   , KC_P    ,KC_BSPC ,
-     KC_LCTRL, KC_A   , KC_S   , KC_D   , KC_F   , KC_G   ,                KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN ,LT(_SYM,KC_QUOT) ,
+     KC_LCTL, KC_A   , KC_S   , KC_D   , KC_F   , KC_G   ,                KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN ,LT(_SYM,KC_QUOT) ,
      KC_LSFT , KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   ,                KC_N   , KC_M   , KC_COMM, KC_DOT  ,KC_SLSH ,KC_RSFT ,
-     NAV,         LWR ,KC_LALT , KC_LGUI,KC_ENT , KC_LBRC ,                KC_RBRC, KC_SPC , RSE, OSL(_NAV) , KC_NO, KC_RCTRL 
+     NAV,         LWR ,KC_LALT , KC_LGUI,KC_ENT , KC_LBRC ,                KC_RBRC, KC_SPC , RSE, OSL(_NAV) , KC_NO, KC_RCTL 
                 
   ),
 
@@ -66,9 +66,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_COLEMAK] = LAYOUT( \
      KC_ESC,   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                       KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_GRV,
      KC_TAB,   KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                       KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
-     KC_LCTRL, KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                       KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    LT(_SYM,KC_QUOT),
+     KC_LCTL, KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                       KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    LT(_SYM,KC_QUOT),
      KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                       KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-     NAV,      LWR,     KC_LALT, KC_LGUI, KC_ENT,  KC_LBRC,                    KC_RBRC, KC_SPC,  RSE,     NAV,  KC_NUM,  KC_RCTRL
+     NAV,      LWR,     KC_LALT, KC_LGUI, KC_ENT,  KC_LBRC,                    KC_RBRC, KC_SPC,  RSE,     NAV,  KC_NUM,  KC_RCTL
 ),
 
 [_RAISE] = LAYOUT(\
@@ -81,9 +81,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_LOWER] = LAYOUT( \
   KC_GRV ,    KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  ,                         KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , _______, \
-  _______,    KC_11  , KC_F12 , _______, TG(_RAISE), AG_TOGG,                      _______, _______, _______, _______, _______, KC_DEL , \
+  _______,    KC_F11  , KC_F12 , _______, TG(_RAISE), AG_TOGG,                      _______, _______, _______, _______, _______, KC_DEL , \
   G(C(KC_Q)), KC_VOLD, _______, _______, DF(_QWERTY), DF(_COLEMAK),                _______, C(KC_LEFT), _______, C(KC_RGHT), _______, _______, \
-  _______,    KC_CAPS, _______, _______, C(KC_LEFT), C(KC_RGHT),                   _______, C(S(KC_TAB)), C(KC_R) , C(KC_TAB), _______, _______, \
+  _______,    KC_CAPS, _______, _______, C(KC_LEFT), C(KC_RGHT),                   _______, C(S(KC_TAB)), G(KC_R) , C(KC_TAB), _______, _______, \
   _______,                   _______, _______, _______, KC_SPC , KC_VOLD, KC_VOLU, _______, _______, _______, _______, _______\
 ),
 
@@ -99,14 +99,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TILD , C(KC_1), C(KC_2), C(KC_3), C(KC_4), C(KC_5),                     C(KC_6), C(KC_7),      C(KC_8), C(KC_9),    C(KC_0), KC_TILD,
   KC_BSPC , XXXXXXX, XXXXXXX, KC_UP  , XXXXXXX, KC_PGUP,                     XXXXXXX, KC_VOLD,      KC_MUTE, KC_VOLU,    XXXXXXX, XXXXXXX,
   XXXXXXX , XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,                     XXXXXXX, C(KC_LEFT),   XXXXXXX, C(KC_RGHT), XXXXXXX, XXXXXXX,
-  XXXXXXX , XXXXXXX, XXXXXXX, XXXXXXX, C(KC_LEFT), C(KC_RGHT),               XXXXXXX, C(S(KC_TAB)), XXXXXXX, C(KC_TAB),  XXXXXXX, _______,
+  XXXXXXX , XXXXXXX, XXXXXXX, XXXXXXX, C(KC_LEFT), C(KC_RGHT),               XXXXXXX, C(S(KC_TAB)), G(KC_R), C(KC_TAB),  XXXXXXX, _______,
   XXXXXXX ,          KC_BTN1, KC_BTN2, KC_LGUI, KC_SPC, XXXXXXX, XXXXXXX,G(KC_SPC),XXXXXXX, KC_ENT, XXXXXXX, XXXXXXX
 ),
 
 [_SYM] = LAYOUT(
   _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, KC_LBRC, KC_RBRC, XXXXXXX, XXXXXXX, _______,
-  KC_LCTRL,XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_LT,   KC_LPRN, KC_RPRN, KC_GT,   XXXXXXX, XXXXXXX,
+  KC_LCTL,XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_LT,   KC_LPRN, KC_RPRN, KC_GT,   XXXXXXX, XXXXXXX,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, KC_LCBR, KC_RCBR, XXXXXXX, XXXXXXX, _______,
   XXXXXXX,         XXXXXXX, KC_LALT, KC_LGUI, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 )
@@ -232,7 +232,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       {
       static bool tab_key_registered;
       if (record->event.pressed) {
-        if ((get_mods() & (MOD_BIT(KC_LGUI) | MOD_BIT(KC_LCTRL))) == (MOD_BIT(KC_LGUI) | MOD_BIT(KC_LCTRL))) {
+        if ((get_mods() & (MOD_BIT(KC_LGUI) | MOD_BIT(KC_LCTL))) == (MOD_BIT(KC_LGUI) | MOD_BIT(KC_LCTL))) {
           del_mods(MOD_MASK_GUI);
           add_mods(MOD_MASK_SHIFT);
           register_code(KC_TAB);
