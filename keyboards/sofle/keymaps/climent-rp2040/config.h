@@ -8,7 +8,7 @@ for more options.
 
 //#define USE_MATRIX_I2C
 
-#define EE_HANDS
+#define MASTER_LEFT
 
 #define CUSTOM_FONT
 
