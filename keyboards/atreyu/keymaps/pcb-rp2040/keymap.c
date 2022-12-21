@@ -302,7 +302,8 @@ const rgblight_segment_t PROGMEM my_lower_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {2, 1, HSV_GREEN}
 );
 const rgblight_segment_t PROGMEM my_adjust_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {1, 1, HSV_GREEN}
+    {0, 1, HSV_PURPLE},
+    {2, 1, HSV_PURPLE}
 );
 
 // Now define the array of layers. Later layers take precedence
