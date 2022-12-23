@@ -28,6 +28,9 @@
 
 #define RETRO_TAPPING
 
+#undef ENCODER_RESOLUTION
+#define ENCODER_RESOLUTION 4
+
 // Underglow settings
 #ifdef RGBLIGHT_ENABLE
 
@@ -46,7 +49,9 @@
 #define RGBLIGHT_LAYERS
 
 #define RGBLIGHT_LAYERS_OVERRIDE_RGB_OFF
+//#define WS2812_PIO_USE_PIO1 // Force the usage of PIO1 peripheral, by default the WS2812 implementation uses the PIO0 peripheral
 
 #endif
-
 #endif
+
+
