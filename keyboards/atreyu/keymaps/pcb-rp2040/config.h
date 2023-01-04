@@ -31,15 +31,16 @@
 #undef ENCODER_RESOLUTION
 #define ENCODER_RESOLUTION 4
 
-// Underglow settings
+// === Underglow settings
 #ifdef RGBLIGHT_ENABLE
 
 // WS2812 RGB LED strip input and number of LEDs
 #define RGB_DI_PIN C7
+//#define RGB_DI_PIN F1
 #define RGBLED_NUM 3
 
 #define RGBLIGHT_LIMIT_VAL 150
-//#define RGBLIGHT_ANIMATIONS
+#define RGBLIGHT_ANIMATIONS
 
 /* define if matrix has ghost */
 //#define MATRIX_HAS_GHOST
@@ -52,6 +53,17 @@
 //#define WS2812_PIO_USE_PIO1 // Force the usage of PIO1 peripheral, by default the WS2812 implementation uses the PIO0 peripheral
 
 #endif
+
+// === OLED settings
+#ifdef OLED_ENABLE
+//    #define OLED_DISPLAY_128X64
+//    #define OLED_IC OLED_IC_SH1106
+    #define OLED_FONT_H "keyboards/atreyu/keymaps/pcb-rp2040/glcdfont.c"
+    #define OLED_FONT_WIDTH 8
+    #define OLED_FONT_START 0x80
+    #define OLED_FONT_END 0xbf
+#endif
+
 #endif
 
 
