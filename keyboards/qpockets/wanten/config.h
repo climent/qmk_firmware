@@ -45,9 +45,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ENCODER_RESOLUTION 4
 //#define ENCODER_DIRECTION_FLIP
 
-/* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
-#define DEBOUNCE 4
-
 /*nothing below here is needed for wanten unless enabling RGB. the correct RGB_DI_PIN is defined, the rest is up to you o7 */
 
 //#define RGB_DI_PIN B0
@@ -76,9 +73,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define LED_SCROLL_LOCK_PIN B2
 //#define LED_COMPOSE_PIN B3
 //#define LED_KANA_PIN B4
-
-/* define if matrix has ghost (lacks anti-ghosting diodes) */
-//#define MATRIX_HAS_GHOST
 
 /* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
 //#define LOCKING_SUPPORT_ENABLE

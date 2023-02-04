@@ -35,9 +35,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* COL2ROW, ROW2COL*/
 #define DIODE_DIRECTION COL2ROW
 
-/* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
-#define DEBOUNCE 5
-
 /* Ensure we jump to bootloader if the QK_BOOT keycode was pressed */
 #define EARLY_INIT_PERFORM_BOOTLOADER_JUMP TRUE
 
@@ -48,9 +45,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define I2C1_TIMINGR_SDADEL 1U
 #define I2C1_TIMINGR_SCLH 3U
 #define I2C1_TIMINGR_SCLL 9U
-
-/* define if matrix has ghost (lacks anti-ghosting diodes) */
-//#define MATRIX_HAS_GHOST
 
 /* If defined, GRAVE_ESC will always act as ESC when CTRL is held.
  * This is userful for the Windows task manager shortcut (ctrl+shift+esc).
