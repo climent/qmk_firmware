@@ -76,7 +76,7 @@ void do_code16(uint16_t code, void (*f)(uint8_t)) {
 }
 
 __attribute__((weak)) void register_code16(uint16_t code) {
-    if (IS_MOD(code) || code == KC_NO) {
+    if (IS_MODIFIER_KEYCODE(code) || code == KC_NO) {
         do_code16(code, register_mods);
     } else {
         do_code16(code, register_weak_mods);
@@ -86,7 +86,7 @@ __attribute__((weak)) void register_code16(uint16_t code) {
 
 __attribute__((weak)) void unregister_code16(uint16_t code) {
     unregister_code(code);
-    if (IS_MOD(code) || code == KC_NO) {
+    if (IS_MODIFIER_KEYCODE(code) || code == KC_NO) {
         do_code16(code, unregister_mods);
     } else {
         do_code16(code, unregister_weak_mods);
@@ -451,14 +451,6 @@ layer_state_t update_tri_layer_state(layer_state_t state, uint8_t layer1, uint8_
 
 void update_tri_layer(uint8_t layer1, uint8_t layer2, uint8_t layer3) {
     layer_state_set(update_tri_layer_state(layer_state, layer1, layer2, layer3));
-}
-
-// TODO: remove legacy api
-void matrix_init_quantum(void) {
-    matrix_init_kb();
-}
-void matrix_scan_quantum(void) {
-    matrix_scan_kb();
 }
 
 //------------------------------------------------------------------------------
