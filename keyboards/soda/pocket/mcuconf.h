@@ -1,4 +1,4 @@
-/* Copyright 2020 Yatara
+/* Copyright 2020 QMK
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -13,15 +13,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
+ 
 #pragma once
 
+#include_next <mcuconf.h>
 
-/* Key matrix size */
-#define MATRIX_ROWS 1
-#define MATRIX_COLS 4
+#undef STM32_I2C_USE_DMA
+#define STM32_I2C_USE_DMA FALSE
 
-/* Pinout */
-#define DIRECT_PINS { \
-    {B4, B5, B6, B7} \
-}
