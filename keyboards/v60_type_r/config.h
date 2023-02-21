@@ -18,10 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 
-/* key matrix size */
-#define MATRIX_ROWS 8
-#define MATRIX_COLS 8
-
 /*
  * Keyboard Matrix Assignments
  *
@@ -40,9 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define BACKLIGHT_PIN F7
 #define BACKLIGHT_LEVELS 3
-#define BACKLIGHT_ON_STATE 0
 
-//#define RGB_DI_PIN 0
 #define RGBLED_NUM 1
 #define RGBLIGHT_EFFECT_BREATHING
 #define RGBLIGHT_EFFECT_RAINBOW_MOOD

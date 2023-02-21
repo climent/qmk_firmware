@@ -18,10 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 
-/* key matrix size */
-// Rows are doubled-up
-#define MATRIX_ROWS 8
-#define MATRIX_COLS 6
 #define DIODE_DIRECTION COL2ROW
 
 
@@ -38,7 +34,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define BACKLIGHT_PIN C6
 #define BACKLIGHT_LEVELS 5
 #define BACKLIGHT_BREATHING //not working with splits right now
-#define BREATHING_PERIOD 6
 #endif
 
 /* ws2812 RGB LED */
