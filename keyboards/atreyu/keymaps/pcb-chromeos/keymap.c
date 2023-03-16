@@ -99,7 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TILD   , A(S(KC_1)), A(S(KC_2)), A(S(KC_3)), A(S(KC_4)),_______,          _______, _______,      _______, _______,    _______, KC_TILD,
   KC_BSPC   , XXXXXXX, XXXXXXX, KC_UP  , XXXXXXX, KC_PGUP,                     XXXXXXX, KC_VOLD,      KC_MUTE, KC_VOLU,    XXXXXXX, XXXXXXX,
   G(C(KC_Q)), XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,                     XXXXXXX, A(KC_LBRC),   XXXXXXX, A(KC_RBRC), XXXXXXX, XXXXXXX,
-  XXXXXXX   , XXXXXXX, XXXXXXX, XXXXXXX, C(KC_LEFT), C(KC_RGHT),               XXXXXXX, C(S(KC_TAB)), G(KC_R), C(KC_TAB),  XXXXXXX, _______,
+  XXXXXXX   , XXXXXXX, XXXXXXX, XXXXXXX, A(KC_LBRC), A(KC_RBRC),               XXXXXXX, C(S(KC_TAB)), G(KC_R), C(KC_TAB),  XXXXXXX, _______,
   XXXXXXX   ,          KC_BTN1, KC_BTN2, KC_LGUI, KC_SPC, XXXXXXX, XXXXXXX,G(KC_SPC),XXXXXXX, KC_ENT, XXXXXXX, XXXXXXX
 ),
 
