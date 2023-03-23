@@ -72,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_RAISE] = LAYOUT(\
-  _______, A(S(KC_1)), A(S(KC_2)), A(S(KC_3)), A(S(KC_4)), _______,                    KC_HOME, KC_END , _______, KC_LCBR, KC_RCBR, KC_TILD, \
+  _______, A(S(KC_1)), A(S(KC_2)), A(S(KC_3)), A(S(KC_4)), A(S(KC_5)),                 KC_HOME, KC_END , _______, KC_LCBR, KC_RCBR, KC_TILD, \
   _______, _______, _______, _______, KC_HOME, KC_END ,                    KC_PGUP, XXXXXXX, KC_UP  , KC_LBRC, KC_RBRC, KC_DEL , \
   _______, _______, _______, _______, _______, _______,                    KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_PIPE, KC_ENT , \
   _______, _______, _______, _______, _______, _______,                    KC_UNDS, KC_MINS, KC_EQL , KC_PLUS, KC_BSLS, _______, \
@@ -96,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_NAV] = LAYOUT(
-  KC_TILD   , A(S(KC_1)), A(S(KC_2)), A(S(KC_3)), A(S(KC_4)),_______,          _______, _______,      _______, _______,    _______, KC_TILD,
+  KC_TILD   , A(S(KC_1)), A(S(KC_2)), A(S(KC_3)), A(S(KC_4)), A(S(KC_5)),      _______, _______,      _______, _______,    _______, KC_TILD,
   KC_BSPC   , XXXXXXX, XXXXXXX, KC_UP  , XXXXXXX, KC_PGUP,                     XXXXXXX, KC_VOLD,      KC_MUTE, KC_VOLU,    XXXXXXX, XXXXXXX,
   G(C(KC_Q)), XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,                     XXXXXXX, A(KC_LBRC),   XXXXXXX, A(KC_RBRC), XXXXXXX, XXXXXXX,
   XXXXXXX   , XXXXXXX, XXXXXXX, XXXXXXX, A(KC_LBRC), A(KC_RBRC),               XXXXXXX, C(S(KC_TAB)), G(KC_R), C(KC_TAB),  XXXXXXX, _______,
