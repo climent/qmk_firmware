@@ -23,7 +23,7 @@ for more options.
 #define RETRO_TAPPING
 
 #undef ENCODER_RESOLUTION
-#define ENCODER_RESOLUTION 4
+#define ENCODER_RESOLUTION 2
 
 #define SPLIT_LED_STATE_ENABLE
 
