@@ -1,4 +1,4 @@
-/* Copyright 2021 SamuraiKek
+/* Copyright 2022 Viktus Design LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,16 +14,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
+#include QMK_KEYBOARD_H
 
-
-#define EE_HANDS
-
-/* define pins */
-#define MATRIX_ROW_PINS { F4, F5, F6, D3, C6 }
-#define MATRIX_COL_PINS { D7, B4, B5, B6, F0, D4, D6 }
-#define MATRIX_ROW_PINS_RIGHT { F5, F1, B2, B1, C6 }
-#define MATRIX_COL_PINS_RIGHT { B6, B5, D6, D5, D3, D7, B4 }
-
-/* COL2ROW, ROW2COL*/
-#define DIODE_DIRECTION COL2ROW
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+    [0] = LAYOUT_all_split(
+        KC_NUM, KC_PSLS, KC_PAST, KC_PMNS,
+        KC_P7,  KC_P8,   KC_P9,   KC_PPLS,
+        KC_P4,  KC_P5,   KC_P6,   KC_PEQL,
+        KC_P1,  KC_P2,   KC_P3,   KC_DEL,
+        KC_P0,  KC_P0,   KC_PDOT, KC_PENT
+    )
+};
