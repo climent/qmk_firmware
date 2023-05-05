@@ -41,7 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGB_DI_PIN D3
 #ifdef RGBLED_NUM
 #undef RGBLED_NUM
-#define RGBLED_NUM 31
+#define RGBLED_NUM 62
 #endif
 #define RGBLED_SPLIT {31, 31}
 #define RGBLIGHT_DEFAULT_HUE 169
