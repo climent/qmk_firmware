@@ -260,34 +260,16 @@ void led_set_user(uint8_t usb_led) {
 
 }
 
-#ifdef ENCODER_ENABLE
-
-bool encoder_update_user(uint8_t index, bool clockwise) {
-    if (index == 1) {
-      if (clockwise) {
-          tap_code(KC_VOLU);
-      } else {
-          tap_code(KC_VOLD);
-      }
-    }
-    if (index == 0) {
-      if (IS_LAYER_ON(_LOWER)) {
-        if (clockwise) {
-            tap_code(KC_WH_U);
-        } else {
-            tap_code(KC_WH_D);
-        }
-      } else {
-        if (clockwise) {
-            tap_code(KC_VOLU);
-        } else {
-            tap_code(KC_VOLD);
-        }
-      }
-    }
-    return true;
-}
-
+#ifdef ENCODER_MAP_ENABLE
+const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
+    [0] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
+    [1] = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D) },
+    [2] = { ENCODER_CCW_CW(RGB_HUD, RGB_HUI) },
+    [3] = { ENCODER_CCW_CW(_______, _______) },
+    [4] = { ENCODER_CCW_CW(_______, _______) },
+    [5] = { ENCODER_CCW_CW(_______, _______) },
+    [6] = { ENCODER_CCW_CW(RGB_VAD, RGB_VAI) }
+};
 #endif
 
 #ifdef RGBLIGHT_ENABLE

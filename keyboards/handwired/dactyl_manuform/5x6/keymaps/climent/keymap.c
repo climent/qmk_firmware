@@ -64,16 +64,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_LOWER] = LAYOUT_5x6(
   KC_GRV ,    KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  ,                         KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , _______, \
-  _______,    KC_VOLU, _______, _______, TG(_RAISE), AG_TOGG,                      _______, KC_VOLD,      KC_MUTE, KC_VOLU,    _______, KC_DEL ,
-  G(C(KC_Q)), KC_VOLD, _______, _______, _______, _______,                         _______, C(KC_LEFT),   _______, C(KC_RGHT), _______, _______,
+  _______,    KC_VOLU, _______, _______, TG(_RAISE), KC_PGUP,                      _______, KC_VOLD,      KC_MUTE, KC_VOLU,    _______, KC_DEL ,
+  G(C(KC_Q)), KC_VOLD, _______, _______, _______, KC_PGDN,                         _______, C(KC_LEFT),   _______, C(KC_RGHT), _______, _______,
   _______,    KC_CAPS, _______, _______, C(KC_LEFT), C(KC_RGHT),                   _______, C(S(KC_TAB)), G(KC_R), C(KC_TAB),  _______, _______,
-                                        _______,  _______,_______,            KC_RGUI ,KC_RALT, _______,
+                                        _______,  _______,_______,            KC_RGUI ,_______, KC_RALT,
                                                 _______,_______,            _______,_______
     ),
 
 [_ADJUST] = LAYOUT_5x6( \
   XXXXXXX , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-  XXXXXXX , XXXXXXX, RGB_VAD, RGB_TOG, RGB_VAI, XXXXXXX,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+  XXXXXXX , XXXXXXX, RGB_VAD, RGB_TOG, RGB_VAI, AG_TOGG,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
   XXXXXXX , XXXXXXX, RGB_MOD, XXXXXXX, RGB_RMOD, XXXXXXX,                    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
   XXXXXXX , XXXXXXX, RGB_HUI, XXXXXXX, RGB_HUD, XXXXXXX,                     XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX, XXXXXXX, \
                                         _______,  _______,_______,            KC_RGUI ,KC_RALT, _______,
@@ -215,16 +215,20 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 #ifdef RGBLIGHT_ENABLE
 
 const rgblight_segment_t PROGMEM my_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {21, 10, HSV_RED}       // Light 10 LEDs, starting with LED 21
+    {21, 10, HSV_RED},
+    {52, 10, HSV_RED}    // Light 10 LEDs, starting with LED 21
 );
 const rgblight_segment_t PROGMEM my_raise_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {2, 1, HSV_GREEN}
+    {0, 3, HSV_GREEN},
+    {31,3, HSV_GREEN}
 );
 const rgblight_segment_t PROGMEM my_lower_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {2, 1, HSV_ORANGE}
+    {0, 3, HSV_ORANGE},
+    {31,3, HSV_ORANGE}
 );
 const rgblight_segment_t PROGMEM my_adjust_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {2, 1, HSV_RED}
+    {0, 3, HSV_RED},
+    {31,3, HSV_RED}
 );
 
 // Now define the array of layers. Later layers take precedence
