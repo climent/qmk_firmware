@@ -21,12 +21,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LOCKING_SUPPORT_ENABLE
 /* Locking resynchronize hack */
 #define LOCKING_RESYNC_ENABLE
-// enable NKRO_ENABLE
-#define FORCE_NKRO
-// The pin connected to the data pin of the LEDs
-#define RGB_DI_PIN C15
-// The number of LEDs connected
 
+// The number of LEDs connected
 #define RGB_MATRIX_LED_COUNT 34
 
 #ifdef RGB_MATRIX_ENABLE

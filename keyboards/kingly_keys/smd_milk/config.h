@@ -15,8 +15,6 @@
  */
 #pragma once
 
-#define FORCE_NKRO
-
 /* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
 #define LOCKING_SUPPORT_ENABLE
 
@@ -24,7 +22,6 @@
 #define LOCKING_RESYNC_ENABLE
 
 /* ws2812 RGB LED */
-#define RGB_DI_PIN B3
 #define RGBLED_NUM 4  // Number of LEDs
 
 #define RGBLIGHT_EFFECT_BREATHING
