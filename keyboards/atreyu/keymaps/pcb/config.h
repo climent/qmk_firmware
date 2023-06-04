@@ -31,10 +31,9 @@
 #undef WS2812_DI_PIN
 #define WS2812_DI_PIN C7
 #define RGB_DI_PIN C7
-#define RGBLED_NUM 3
+#define RGBLED_NUM 5
 
 #define RGBLIGHT_LIMIT_VAL 150
-//#define RGBLIGHT_ANIMATIONS
 
 /* define if matrix has ghost */
 //#define MATRIX_HAS_GHOST
@@ -45,6 +44,16 @@
 
 #define RGBLIGHT_LAYERS_OVERRIDE_RGB_OFF
 
+#endif
+
+#ifdef OLED_ENABLE
+#define OLED_DISPLAY_64X128 
+#define OLED_IC OLED_IC_SH1107
+#define OLED_COLUMN_OFFSET 32
+#define OLED_FONT_H "keyboards/sofle/keymaps/climent/glcdfont.c"
+#define OLED_FONT_WIDTH 8
+#define OLED_FONT_START 0x80
+#define OLED_FONT_END 0xbf
 #endif
 
 #endif
