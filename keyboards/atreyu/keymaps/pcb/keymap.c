@@ -96,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_NAV] = LAYOUT(
   KC_TILD   , C(KC_1), C(KC_2), C(KC_3), C(KC_4), C(KC_5),                     C(KC_6), C(KC_7),      C(KC_8), C(KC_9),    C(KC_0), KC_TILD,
-  KC_BSPC   , XXXXXXX, XXXXXXX, KC_UP  , XXXXXXX, KC_PGUP,                     XXXXXXX, KC_VOLD,      KC_MUTE, KC_VOLU,    XXXXXXX, XXXXXXX,
+  KC_BSPC   , XXXXXXX, KC_HOME, KC_UP  , KC_END , KC_PGUP,                     XXXXXXX, KC_VOLD,      KC_MUTE, KC_VOLU,    XXXXXXX, XXXXXXX,
   G(C(KC_Q)), XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,                     XXXXXXX, C(KC_LEFT),   XXXXXXX, C(KC_RGHT), XXXXXXX, XXXXXXX,
   XXXXXXX   , XXXXXXX, XXXXXXX, XXXXXXX, C(KC_LEFT), C(KC_RGHT),               XXXXXXX, C(S(KC_TAB)), G(KC_R), C(KC_TAB),  XXXXXXX, _______,
   XXXXXXX   ,          KC_BTN1, KC_BTN2, KC_LGUI, KC_SPC, XXXXXXX, XXXXXXX,G(KC_SPC),XXXXXXX, KC_ENT, XXXXXXX, XXXXXXX
@@ -274,19 +274,19 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 #ifdef RGBLIGHT_ENABLE
 
 const rgblight_segment_t PROGMEM my_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 5, HSV_RED}
+    {0, 3, HSV_RED}
 );
 const rgblight_segment_t PROGMEM my_raise_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 1, HSV_GREEN},
-    {4, 1, HSV_GREEN}
+    {2, 1, HSV_GREEN}
 );
 const rgblight_segment_t PROGMEM my_lower_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 1, HSV_YELLOW},
-    {4, 1, HSV_YELLOW}
+    {2, 1, HSV_YELLOW}
 );
 const rgblight_segment_t PROGMEM my_adjust_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 1, HSV_PURPLE},
-    {4, 1, HSV_PURPLE}
+    {2, 1, HSV_PURPLE}
 );
 
 // Now define the array of layers. Later layers take precedence
