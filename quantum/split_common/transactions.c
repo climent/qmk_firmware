@@ -20,12 +20,49 @@
 #include "crc.h"
 #include "debug.h"
 #include "matrix.h"
-#include "quantum.h"
+#include "host.h"
+#include "action_util.h"
+#include "sync_timer.h"
+#include "wait.h"
 #include "transactions.h"
 #include "transport.h"
 #include "transaction_id_define.h"
 #include "split_util.h"
 #include "synchronization_util.h"
+
+#ifdef BACKLIGHT_ENABLE
+#    include "backlight.h"
+#endif
+#ifdef RGBLIGHT_ENABLE
+#    include "rgblight.h"
+#endif
+#ifdef LED_MATRIX_ENABLE
+#    include "led_matrix.h"
+#endif
+#ifdef RGB_MATRIX_ENABLE
+#    include "rgb_matrix.h"
+#endif
+#ifdef OLED_ENABLE
+#    include "oled_driver.h"
+#endif
+#ifdef ST7565_ENABLE
+#    include "st7565.h"
+#endif
+#ifdef ENCODER_ENABLE
+#    include "encoder.h"
+#endif
+#ifdef HAPTIC_ENABLE
+#    include "haptic.h"
+#endif
+#ifdef POINTING_DEVICE_ENABLE
+#    include "pointing_device.h"
+#endif
+#ifdef OS_DETECTION_ENABLE
+#    include "os_detection.h"
+#endif
+#ifdef WPM_ENABLE
+#    include "wpm.h"
+#endif
 
 #define SYNC_TIMER_OFFSET 2
 
@@ -412,7 +449,7 @@ static void backlight_handlers_slave(matrix_row_t master_matrix[], matrix_row_t 
     uint8_t backlight_level = split_shmem->backlight_level;
     split_shared_memory_unlock();
 
-    backlight_set(backlight_level);
+    backlight_level_noeeprom(backlight_level);
 }
 
 #    define TRANSACTIONS_BACKLIGHT_MASTER() TRANSACTION_HANDLER_MASTER(backlight)
@@ -795,13 +832,14 @@ static void haptic_handlers_slave(matrix_row_t master_matrix[], matrix_row_t sla
 static bool activity_handlers_master(matrix_row_t master_matrix[], matrix_row_t slave_matrix[]) {
     static uint32_t             last_update = 0;
     split_slave_activity_sync_t activity_sync;
-    activity_sync.matrix_timestamp  = last_matrix_activity_time();
-    activity_sync.encoder_timestamp = last_encoder_activity_time();
+    activity_sync.matrix_timestamp          = last_matrix_activity_time();
+    activity_sync.encoder_timestamp         = last_encoder_activity_time();
+    activity_sync.pointing_device_timestamp = last_pointing_device_activity_time();
     return send_if_data_mismatch(PUT_ACTIVITY, &last_update, &activity_sync, &split_shmem->activity_sync, sizeof(activity_sync));
 }
 
 static void activity_handlers_slave(matrix_row_t master_matrix[], matrix_row_t slave_matrix[]) {
-    set_activity_timestamps(split_shmem->activity_sync.matrix_timestamp, split_shmem->activity_sync.encoder_timestamp);
+    set_activity_timestamps(split_shmem->activity_sync.matrix_timestamp, split_shmem->activity_sync.encoder_timestamp, split_shmem->activity_sync.pointing_device_timestamp);
 }
 
 // clang-format off
@@ -817,6 +855,34 @@ static void activity_handlers_slave(matrix_row_t master_matrix[], matrix_row_t s
 #    define TRANSACTIONS_ACTIVITY_REGISTRATIONS
 
 #endif // defined(SPLIT_ACTIVITY_ENABLE)
+
+////////////////////////////////////////////////////
+// Detected OS
+
+#if defined(OS_DETECTION_ENABLE) && defined(SPLIT_DETECTED_OS_ENABLE)
+
+static bool detected_os_handlers_master(matrix_row_t master_matrix[], matrix_row_t slave_matrix[]) {
+    static uint32_t last_detected_os_update = 0;
+    os_variant_t    detected_os             = detected_host_os();
+    bool            okay                    = send_if_condition(PUT_DETECTED_OS, &last_detected_os_update, (detected_os != split_shmem->detected_os), &detected_os, sizeof(os_variant_t));
+    return okay;
+}
+
+static void detected_os_handlers_slave(matrix_row_t master_matrix[], matrix_row_t slave_matrix[]) {
+    slave_update_detected_host_os(split_shmem->detected_os);
+}
+
+#    define TRANSACTIONS_DETECTED_OS_MASTER() TRANSACTION_HANDLER_MASTER(detected_os)
+#    define TRANSACTIONS_DETECTED_OS_SLAVE() TRANSACTION_HANDLER_SLAVE_AUTOLOCK(detected_os)
+#    define TRANSACTIONS_DETECTED_OS_REGISTRATIONS [PUT_DETECTED_OS] = trans_initiator2target_initializer(detected_os),
+
+#else // defined(OS_DETECTION_ENABLE) && defined(SPLIT_DETECTED_OS_ENABLE)
+
+#    define TRANSACTIONS_DETECTED_OS_MASTER()
+#    define TRANSACTIONS_DETECTED_OS_SLAVE()
+#    define TRANSACTIONS_DETECTED_OS_REGISTRATIONS
+
+#endif // defined(OS_DETECTION_ENABLE) && defined(SPLIT_DETECTED_OS_ENABLE)
 
 ////////////////////////////////////////////////////
 
@@ -847,6 +913,7 @@ split_transaction_desc_t split_transaction_table[NUM_TOTAL_TRANSACTIONS] = {
     TRANSACTIONS_WATCHDOG_REGISTRATIONS
     TRANSACTIONS_HAPTIC_REGISTRATIONS
     TRANSACTIONS_ACTIVITY_REGISTRATIONS
+    TRANSACTIONS_DETECTED_OS_REGISTRATIONS
 // clang-format on
 
 #if defined(SPLIT_TRANSACTION_IDS_KB) || defined(SPLIT_TRANSACTION_IDS_USER)
@@ -876,6 +943,7 @@ bool transactions_master(matrix_row_t master_matrix[], matrix_row_t slave_matrix
     TRANSACTIONS_WATCHDOG_MASTER();
     TRANSACTIONS_HAPTIC_MASTER();
     TRANSACTIONS_ACTIVITY_MASTER();
+    TRANSACTIONS_DETECTED_OS_MASTER();
     return true;
 }
 
@@ -898,6 +966,7 @@ void transactions_slave(matrix_row_t master_matrix[], matrix_row_t slave_matrix[
     TRANSACTIONS_WATCHDOG_SLAVE();
     TRANSACTIONS_HAPTIC_SLAVE();
     TRANSACTIONS_ACTIVITY_SLAVE();
+    TRANSACTIONS_DETECTED_OS_SLAVE();
 }
 
 #if defined(SPLIT_TRANSACTION_IDS_KB) || defined(SPLIT_TRANSACTION_IDS_USER)

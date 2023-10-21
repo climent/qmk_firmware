@@ -36,7 +36,6 @@
 
 #ifdef RGB_MATRIX_ENABLE
     /* RGB Matrix config */
-    #define RGB_DI_PIN A10
     #define RGB_MATRIX_LED_COUNT 36
     #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 200
     #define RGB_MATRIX_DEFAULT_VAL RGB_MATRIX_MAXIMUM_BRIGHTNESS
@@ -90,9 +89,6 @@
 #define ENABLE_RGB_MATRIX_SOLID_MULTISPLASH
 #endif
 
-
-
-// #define DYNAMIC_KEYMAP_LAYER_COUNT 4
 /*
  * Feature disable options
  *  These options are also useful to firmware size reduction.

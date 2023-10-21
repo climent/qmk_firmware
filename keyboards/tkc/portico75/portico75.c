@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifdef RGB_MATRIX_ENABLE
 
-const is31_led PROGMEM g_is31_leds[RGB_MATRIX_LED_COUNT] = {
+const is31fl3741_led_t PROGMEM g_is31fl3741_leds[RGB_MATRIX_LED_COUNT] = {
     {0, CS18_SW1, CS17_SW1, CS16_SW1},
     {0, CS18_SW2, CS17_SW2, CS16_SW2},
     {0, CS18_SW3, CS17_SW3, CS16_SW3},
@@ -167,22 +167,6 @@ bool rgb_matrix_indicators_kb(void) {
     }
     if (host_keyboard_led_state().caps_lock) {
         rgb_matrix_set_color(45, 0xFF, 0xFF, 0xFF);
-    }
-    return true;
-}
-#endif
-
-#ifdef ENCODER_ENABLE
-bool encoder_update_kb(uint8_t index, bool clockwise) {
-    if (!encoder_update_user(index, clockwise)) {
-        return false;
-    }
-    if (index == 0) {
-        if (clockwise) {
-            tap_code_delay(KC_VOLU, 10);
-        } else {
-            tap_code_delay(KC_VOLD, 10);
-        }
     }
     return true;
 }

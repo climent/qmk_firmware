@@ -50,18 +50,14 @@ def _valid_community_layout(layout):
     return (Path('layouts/default') / layout).exists()
 
 
-def _validate(keyboard, info_data):
-    """Perform various validation on the provided info.json data
+def _get_key_left_position(key):
+    # Special case for ISO enter
+    return key['x'] - 0.25 if key.get('h', 1) == 2 and key.get('w', 1) == 1.25 else key['x']
+
+
+def _additional_validation(keyboard, info_data):
+    """Non schema checks
     """
-    # First validate against the jsonschema
-    try:
-        validate(info_data, 'qmk.api.keyboard.v1')
-
-    except jsonschema.ValidationError as e:
-        json_path = '.'.join([str(p) for p in e.absolute_path])
-        cli.log.error('Invalid API data: %s: %s: %s', keyboard, json_path, e.message)
-        exit(1)
-
     layouts = info_data.get('layouts', {})
     layout_aliases = info_data.get('layout_aliases', {})
     community_layouts = info_data.get('community_layouts', [])
@@ -73,7 +69,7 @@ def _validate(keyboard, info_data):
 
     # Warn if physical positions are offset (at least one key should be at x=0, and at least one key at y=0)
     for layout_name, layout_data in layouts.items():
-        offset_x = min([k['x'] for k in layout_data['layout']])
+        offset_x = min([_get_key_left_position(k) for k in layout_data['layout']])
         if offset_x > 0:
             _log_warning(info_data, f'Layout "{layout_name}" is offset on X axis by {offset_x}')
 
@@ -102,6 +98,27 @@ def _validate(keyboard, info_data):
     for layout_name in community_layouts_names:
         if layout_name not in layouts and layout_name not in layout_aliases:
             _log_error(info_data, 'Claims to support community layout %s but no %s() macro found' % (layout, layout_name))
+
+    # keycodes with length > 7 must have short forms for visualisation purposes
+    for decl in info_data.get('keycodes', []):
+        if len(decl["key"]) > 7:
+            if not decl.get("aliases", []):
+                _log_error(info_data, f'Keycode {decl["key"]} has no short form alias')
+
+
+def _validate(keyboard, info_data):
+    """Perform various validation on the provided info.json data
+    """
+    # First validate against the jsonschema
+    try:
+        validate(info_data, 'qmk.api.keyboard.v1')
+
+        _additional_validation(keyboard, info_data)
+
+    except jsonschema.ValidationError as e:
+        json_path = '.'.join([str(p) for p in e.absolute_path])
+        cli.log.error('Invalid API data: %s: %s: %s', keyboard, json_path, e.message)
+        exit(1)
 
 
 def info_json(keyboard):
@@ -411,6 +428,15 @@ def _extract_split_transport(info_data, config_c):
         if 'protocol' not in info_data['split']['transport']:
             info_data['split']['transport']['protocol'] = 'serial'
 
+    # Migrate
+    transport = info_data.get('split', {}).get('transport', {})
+    if 'sync_matrix_state' in transport:
+        transport['sync'] = transport.get('sync', {})
+        transport['sync']['matrix_state'] = transport.pop('sync_matrix_state')
+    if 'sync_modifiers' in transport:
+        transport['sync'] = transport.get('sync', {})
+        transport['sync']['modifiers'] = transport.pop('sync_modifiers')
+
 
 def _extract_split_right_pins(info_data, config_c):
     # Figure out the right half matrix pins
@@ -503,6 +529,8 @@ def _config_to_json(key_type, config_value):
             return list(map(str.strip, config_value.split(',')))
 
     elif key_type == 'bool':
+        if isinstance(config_value, bool):
+            return config_value
         return config_value in true_values
 
     elif key_type == 'hex':
@@ -688,6 +716,9 @@ def _extract_led_config(info_data, keyboard):
                     info_data[feature]["layout"] = ret
             except Exception as e:
                 _log_warning(info_data, f'led_config: {file.name}: {e}')
+
+        if info_data[feature].get("layout", None) and not info_data[feature].get("led_count", None):
+            info_data[feature]["led_count"] = len(info_data[feature]["layout"])
 
     return info_data
 

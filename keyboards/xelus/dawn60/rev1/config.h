@@ -16,7 +16,7 @@
 #pragma once
 
 // IS31FL3731 driver
-#define DRIVER_COUNT 2
+#define IS31FL3731_DRIVER_COUNT 2
 #define RGB_MATRIX_LED_COUNT 64
 
 // Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap
@@ -46,7 +46,6 @@
 #define RGB_BACKLIGHT_DAWN60
 
 //RGB Underglow defines
-#define RGB_DI_PIN F0
 #define WS2812_LED_TOTAL 20
 
 #define RGB_UNDERGLOW_ALPHA_TOP_START 0

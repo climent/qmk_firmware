@@ -30,6 +30,9 @@ quantum/version.h
 *.qmk
 *.uf2
 
+# DD config at wrong location
+/keyboards/**/keymaps/*/info.json
+
 # Old-style QMK Makefiles
 /keyboards/**/Makefile
 
@@ -92,6 +95,7 @@ secrets.tar
 # Python things
 __pycache__
 .python-version
+.venv
 
 # Prerequisites for updating ChibiOS
 /util/fmpp*
@@ -104,8 +108,10 @@ compile_commands.json
 .clangd/
 .cache/
 
-# VIA(L) json files that don't belong in QMK repo
+# VIA(L) files that don't belong in QMK repo
 via*.json
+
+/keyboards/**/keymaps/vial/*
 
 # climent
 compile.sh

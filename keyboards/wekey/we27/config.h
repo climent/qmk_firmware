@@ -18,8 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #ifdef RGB_MATRIX_ENABLE
-// The pin connected to the data pin of the LEDs
-#define RGB_DI_PIN C6
 // The number of LEDs connected
 #define RGB_MATRIX_LED_COUNT 27
 
@@ -81,9 +79,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #    define ENABLE_RGB_MATRIX_SOLID_MULTISPLASH
 
 #endif
-
-#define ENCODERS_CW_KEY { { 4, 5 } }
-#define ENCODERS_CCW_KEY { { 4, 3 } }
 
 /* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
 #define LOCKING_SUPPORT_ENABLE
