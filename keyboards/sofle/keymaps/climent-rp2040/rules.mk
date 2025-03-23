@@ -1,7 +1,7 @@
 
 BOOTLOADER = atmel-dfu
 
-CONVERT_TO=promicro_rp2040
+CONVERT_TO=rp2040_ce
 
 MOUSEKEY_ENABLE = yes
 EXTRAKEY_ENABLE = yes

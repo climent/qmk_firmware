@@ -36,7 +36,8 @@
 #undef WS2812_DI_PIN
 #define WS2812_DI_PIN C7
 #define RGB_DI_PIN C7
-#define RGBLED_NUM 3
+//#define RGBLED_NUM 3
+#define RGBLIGHT_LED_COUNT 3
 
 #define RGBLIGHT_LIMIT_VAL 150
 #define RGBLIGHT_ANIMATIONS
