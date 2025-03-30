@@ -33,10 +33,16 @@
 #ifdef RGBLIGHT_ENABLE
 
 // WS2812 RGB LED strip input and number of LEDs
-#undef WS2812_DI_PIN
+@ifdef WS2812_DI_PIN
+@undef WS2812_DI_PIN
+@endif
+
 #define WS2812_DI_PIN C7
 #define RGB_DI_PIN C7
-//#define RGBLED_NUM 3
+
+#ifdef RGBLIGHT_LED_COUNT
+#undef RGBLIGHT_LED_COUNT
+#endif
 #define RGBLIGHT_LED_COUNT 3
 
 #define RGBLIGHT_LIMIT_VAL 150
