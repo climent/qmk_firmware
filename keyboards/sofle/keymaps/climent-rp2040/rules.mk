@@ -1,7 +1,7 @@
 
 BOOTLOADER = atmel-dfu
 
-CONVERT_TO=liatris
+CONVERT_TO=rp2040_ce
 
 MOUSEKEY_ENABLE = yes
 EXTRAKEY_ENABLE = yes
