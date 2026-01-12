@@ -5,7 +5,7 @@
     "maintainer": "Jesus Climent <climent@gmail.com>",
     "development_board": "promicro",
     "usb": {
-      "vid": "0xFEED",
+      "vid": "0x0698",
       "pid": "0x0001",
       "device_version": "0.0.0"
     },
