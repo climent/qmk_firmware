@@ -47,6 +47,17 @@ enum custom_keycodes {
     KC_VIMZ
 };
 
+// Shift + VOL_UP = S + A + VOL_UP
+const key_override_t shift_volu_override = ko_make_basic(MOD_MASK_SHIFT, KC_VOLU, LSA(KC_VOLU));
+
+// Shift + VOL_DOWN = S + A + VOL_DOWN
+const key_override_t shift_vold_override = ko_make_basic(MOD_MASK_SHIFT, KC_VOLD, LSA(KC_VOLD));
+
+const key_override_t *key_overrides[] = {
+	&shift_volu_override,
+	&shift_vold_override
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_QWERTY] = LAYOUT( \
@@ -84,8 +95,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_NAV] = LAYOUT( 
   KC_TILD , C(KC_1), C(KC_2), C(KC_3), C(KC_4),    C(KC_5),                        C(KC_6),  C(KC_7),      C(KC_8),  C(KC_9),    C(KC_0), KC_TILD,
   KC_BSPC , C(KC_6), KC_HOME, KC_UP  , KC_END ,    KC_PGUP,                        XXXXXXX,  KC_VOLD,      KC_MUTE,  KC_VOLU,    KC_MPLY, G(KC_W),
-  XXXXXXX , XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT,    KC_PGDN,                        XXXXXXX,  C(KC_LEFT),   C(KC_UP), C(KC_RGHT), XXXXXXX, XXXXXXX,
-  XXXXXXX , XXXXXXX, XXXXXXX, XXXXXXX, C(KC_LEFT), C(KC_RGHT), XXXXXXX, XXXXXXX,   XXXXXXX,  C(S(KC_TAB)), G(KC_R),  C(KC_TAB),  XXXXXXX, _______,
+  _______ , XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT,    KC_PGDN,                        XXXXXXX,  C(KC_LEFT),   C(KC_UP), C(KC_RGHT), XXXXXXX, XXXXXXX,
+  _______ , XXXXXXX, XXXXXXX, XXXXXXX, C(KC_LEFT), C(KC_RGHT), XXXXXXX, XXXXXXX,   XXXXXXX,  C(S(KC_TAB)), G(KC_R),  C(KC_TAB),  XXXXXXX, _______,
                      XXXXXXX, MS_BTN1, MS_BTN2,    KC_LGUI,    KC_SPC,  G(KC_SPC), KC_RAISE, KC_ENT,       XXXXXXX,  XXXXXXX
 ),
 
@@ -499,6 +510,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return true;
           }
         }
+	break;
 
     }
 
