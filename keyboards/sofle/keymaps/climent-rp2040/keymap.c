@@ -44,7 +44,8 @@ enum custom_keycodes {
     KC_SYM,
     KC_D_MUTE,
     KC_NAV,
-    KC_VIMZ
+    KC_VIMZ,
+    KC__FIN
 };
 
 // Shift + VOL_UP = S + A + VOL_UP
@@ -72,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, _______, _______, _______, _______,                    KC_HOME, KC_END , _______, KC_LCBR, KC_RCBR, KC_TILD, \
   _______, _______, _______, _______, KC_HOME, KC_END ,                    KC_PGUP, XXXXXXX, KC_UP  , KC_LBRC, KC_RBRC, KC_DEL , \
   _______, _______, _______, _______, _______, _______,                    KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_PIPE, KC_ENT , \
-  _______, KC_VIMZ, _______, _______, _______, _______, KC_MPLY, _______ , KC_UNDS, KC_MINS, KC_EQL , KC_PLUS, KC_BSLS, _______, \
+  _______, KC_VIMZ, _______, _______, _______, _______, KC_MPLY, KC__FIN , KC_UNDS, KC_MINS, KC_EQL , KC_PLUS, KC_BSLS, _______, \
                     _______, _______, _______, _______, KC_SPC , _______ , _______, KC_RGUI, KC_RALT, _______ \
 ),
 
@@ -480,6 +481,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           }
 	}
         return true;
+        break;
+
+      case KC__FIN:
+            if (record->event.pressed) {
+                SEND_STRING(SS_DOWN(X_LGUI) SS_DOWN(X_LALT) SS_TAP(X_SPACE) SS_UP(X_LALT) SS_UP(X_LGUI));
+		SEND_STRING(SS_DELAY(200));
+                SEND_STRING(SS_DOWN(X_LGUI)SS_DOWN(X_LSFT)SS_TAP(X_H)SS_UP(X_LSFT)SS_UP(X_LGUI));
+            }
+            return false; // Skip all further processing          }
         break;
 
       case KC_VIMZ:
